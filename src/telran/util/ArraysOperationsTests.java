@@ -49,6 +49,9 @@ class ArraysOperationsTests {
 		assertEquals(OK, remove(arStr, index1, actualStr1));
 		assertArrayEquals(expectedStr1, actualStr1);
 		
+		String actWrongLenght[]= new String [2];
+		int indexWr=1;
+		assertEquals(WRONG_RESULT_LENGTH, remove(arStr, indexWr, actWrongLenght));
 		//index<0
 		String actualStr2 [] = new String [arStr.length-1];
 		int index2 = -97;
@@ -67,11 +70,10 @@ class ArraysOperationsTests {
 		assertEquals(OK, remove(arrInt, indexInt, actInt));
 		
 		//remove last element
-				
-				Integer expInt1[] = {0,1,2,3,4,5};
-				Integer actInt1[] = new Integer [arrInt.length-1];
-				int indexIntLast = arrInt.length-1;
-				assertEquals(OK, remove(arrInt, indexInt, actInt));
+		Integer expInt1[] = {0,1,2,3,4,5};
+		Integer actInt1[] = new Integer [arrInt.length-1];
+		int indexIntLast = arrInt.length-1;
+		assertEquals(OK, remove(arrInt, indexInt, actInt));
 		
 		
 	}
