@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import static telran.util.ArraysOperations.*;
 
+import java.util.Arrays;
+
 class ArraysOperationsTests {
 
 	private static final String INSERTED_STRING = "World and ";
@@ -80,17 +82,104 @@ class ArraysOperationsTests {
 
 	@Test
 	void testInsertSorted() {
-		fail("Not yet implemented");
+		//element exists
+		String arrStr[] = {"a","b","c","d","e","f"};
+		String expectedStr []= {"a","b","c","c","d","e","f"};
+		String elemExists= "c";
+		int expPosition = 3;
+		String actualStr1 []= new String [arrStr.length+1];
+		assertEquals(OK, insertSorted(arrStr, elemExists, actualStr1));
+		assertEquals(expPosition, Arrays.binarySearch(actualStr1, elemExists));
+		assertArrayEquals(expectedStr, actualStr1);
+		
+		
+		//inserting no existing element
+		Integer sortArr[] = {1,2,3,5,6,7};
+		Integer expectedInt[] = {1,2,3,4,5,6,7};
+		Integer newElem = 4;
+		int expPositionIOfNewElement = 3;
+		Integer actualInt1[] = new Integer [sortArr.length+1];
+		assertEquals(OK,insertSorted(sortArr, newElem, actualInt1));
+		assertEquals(expPositionIOfNewElement, Arrays.binarySearch(actualInt1, newElem));
+		assertArrayEquals(expectedInt, actualInt1);
+		assertEquals(OK,insertSorted(sortArr, newElem, actualInt1));
+		
+		Integer sortArr3[] = {100,200,300,301,600,700,786,9454};
+		Integer expectedInt3[] = {100,200,300,301,600,659,700,786,9454};
+		Integer newElem3 = 659;
+		int expPositionIOfNewElement3 = 5;
+		Integer actualInt3[] = new Integer [sortArr3.length+1];
+		assertEquals(OK,insertSorted(sortArr3, newElem3, actualInt3));
+		assertEquals(expPositionIOfNewElement3, Arrays.binarySearch(actualInt3, newElem3));
+		assertArrayEquals(expectedInt3, actualInt3);
+		
+		//inserting no existing element < then element in 0 position
+		Integer sortArr4[] = {100,200,300,301,600,700,786,9454};
+		Integer expectedInt4[] = {5,100,200,300,301,600,700,786,9454};
+		Integer newElem4 = 5;
+		int expPositionIOfNewElement4 = 0;
+		Integer actualInt4[] = new Integer [sortArr4.length+1];
+		assertEquals(OK,insertSorted(sortArr4, newElem4, actualInt4));
+		assertEquals(expPositionIOfNewElement4, Arrays.binarySearch(actualInt4, newElem4));
+		assertArrayEquals(expectedInt4, actualInt4);
+
+		//inserting no existing element > then  last element 
+		String arrStr2[] = {"a","b","c","d","e","f"};
+		String expectedStr2 []= {"a","b","c","d","e","f","g"};
+		String elemExists2= "g";
+		int expPosition2 = arrStr.length;
+		String actualStr2 []= new String [arrStr.length+1];
+		assertEquals(OK, insertSorted(arrStr2, elemExists2, actualStr2));
+		assertEquals(expPosition2, Arrays.binarySearch(actualStr2, elemExists2));
+		assertArrayEquals(expectedStr2, actualStr2);
+		
+		String actualStr3 []= new String [1];
+		assertEquals(WRONG_RESULT_LENGTH, insertSorted(arrStr2, elemExists2, actualStr3));
+
+		
 	}
+	
+	
 
 	@Test
 	void testAddLast() {
-		fail("Not yet implemented");
+		String arrStr[] = {"a","b","c","d","e","f"};
+		String expectedStr []= {"a","b","c","d","e","f","g"};
+		String insertStr = "g";
+		String actual1[] = new String [arrStr.length+1];
+		assertEquals(OK,addLast(arrStr, insertStr, actual1) );
+		assertArrayEquals(expectedStr, actual1);
+		//wrong  length of the res array 
+		String actual2[] = new String [2];
+		assertEquals(WRONG_RESULT_LENGTH, addLast(arrStr, insertStr, actual2));
+		
+		Integer arrInt[] = {1,2,3,4};
+		Integer expectedInt []= {1,2,3,4,5};
+		Integer inserInt = 5;
+		Integer actualInt[] = new Integer [arrInt.length+1];
+		assertEquals(OK, addLast(arrInt, inserInt, actualInt));
+		assertArrayEquals(expectedInt, actualInt);
+		
 	}
 
 	@Test
 	void testAddFirst() {
-		fail("Not yet implemented");
+		String arrStr[] = {"b","c","d","e","f"};
+		String expectedStr []= {"a","b","c","d","e","f"};
+		String insertStr = "a";
+		String actual1[] = new String [arrStr.length+1];
+		assertEquals(OK,addFirst(arrStr, insertStr, actual1) );
+		assertArrayEquals(expectedStr, actual1);
+		//wrong  length of the res array 
+		String actual2[] = new String [2];
+		assertEquals(WRONG_RESULT_LENGTH, addFirst(arrStr, insertStr, actual2));
+		
+		Integer arrInt[] = {2,3,4};
+		Integer expectedInt []= {1,2,3,4};
+		Integer inserInt = 1;
+		Integer actualInt[] = new Integer [arrInt.length+1];
+		assertEquals(OK, addFirst(arrInt, inserInt, actualInt));
+		assertArrayEquals(expectedInt, actualInt);
 	}
 
 }
