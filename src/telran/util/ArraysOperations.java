@@ -45,14 +45,12 @@ public static <T> String insertSorted (T[] sortedArray, T element, T[] res) {
 	}
 	return insert(sortedArray, element, index, res);
 
-	
 }
 public static <T> String addLast(T[] array, T element, T[]res) {
 	
 	return insert(array, element, array.length, res);
-
-	
 }
+
 public static <T> String addFirst(T[] array, T element, T[]res) {
 	return insert(array, element, 0, res);
 	
