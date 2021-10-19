@@ -7,6 +7,9 @@ import static telran.util.ArraysOperations.*;
 
 import java.util.Arrays;
 
+/* V.R.
+ *  All is OK. I don't see any problem
+ */
 class ArraysOperationsTests {
 
 	private static final String INSERTED_STRING = "World and ";
